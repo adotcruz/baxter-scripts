@@ -4,19 +4,33 @@
 import rospy
 from std_msgs.msg import String
 
-def talker():
-	pub = rospy.Publisher('chatter', String, queue_size=10)
-	rospy.init_node('talker', anonymous=True)
-	rate = rospy.Rate(10)
+
+def talker(count):
+	pub = rospy.Publisher('/ein/left/forth_commands', String, queue_size=1)
+	rospy.init_node('stalker', anonymous=True)
+	rate = rospy.Rate(1)
 	while not rospy.is_shutdown():
-		hello_str = "hello world %s" % rospy.get_time()
-		rospy.loginfo(hello_str)
-		pub.publish(hello_str)
+		# if(count == 0):
+		# 	string = "currentPose .410000 setEEPosePX .407000 setEEPosePY moveEeToPoseWord"
+		# 	count = 1
+		# if(count == 1):
+		# 	string = "goHome"
+		# 	count = 0
+		string = "currentPose .410000 setEEPosePX .407000 setEEPosePY moveEeToPoseWord"
+		count+=1
+		if(count == 4):
+			count = 0
+			string = "goHome"
+		rospy.loginfo(string)
+		rospy.loginfo(count)
+		pub.publish(string)
 		rate.sleep()
 
 
 if __name__ == '__main__':
 	try:
-		talker()
+		count = 0
+		talker(count)
+		print(count)
 	except rospy.ROSInterruptException:
 		pass
