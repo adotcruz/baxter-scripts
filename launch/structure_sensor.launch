@@ -1,5 +1,6 @@
 <launch>
   <arg name="camera" default="structure_sensor"/>
+  <arg name="robot"  default="baxter"/>
   <node name="structure_sensor_baxter_tf" pkg="occgrid_robot" type="structure_sensor_baxter_tf"/>
   
   <include file="$(find openni2_launch)/launch/openni2.launch">

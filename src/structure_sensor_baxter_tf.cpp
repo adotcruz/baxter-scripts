@@ -14,6 +14,7 @@ int main(int argc, char **argv)
   static_transformStamped.header.stamp = ros::Time::now();
   // TODO: Parameterize right and left
   static_transformStamped.header.frame_id = "right_gripper_base";
+  // TODO: structure_sensor = rosparam
   static_transformStamped.child_frame_id = "structure_sensor_link";
   static_transformStamped.transform.translation.x = 0;
   static_transformStamped.transform.translation.y = 0;
